@@ -13,7 +13,16 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 mongoose.set('strictQuery', false);
-mongoose.connect("mongodb://127.0.0.1:27017/todolistDB", {useNewUrlParser: true});
+//mongoose.connect("mongodb://127.0.0.1:27017/todolistDB", {useNewUrlParser: true});
+const connectionStr = "mongodb+srv://admin-gandouye:Soft*0101@cluster0.p2my4i4.mongodb.net";
+mongoose.connect(connectionStr + "/todolistDB?retryWrites=true&w=majority",  { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
+   if(err){
+    console.log(err);
+   } else {
+    console.log("Good");
+   }
+ });
+
 
 const itemsSchema = mongoose.Schema({
   name: {
