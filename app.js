@@ -14,7 +14,7 @@ app.use(express.static("public"));
 
 mongoose.set('strictQuery', false);
 
-const connectionStr = "mongodb+srv://admin-gandouye:Soft*0101@cluster0.p2my4i4.mongodb.net";
+const connectionStr = process.env.CONNECTION_STRING; 
 mongoose.connect(connectionStr + "/todolistDB?retryWrites=true&w=majority",  { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
    if(err){
     console.log(err);
